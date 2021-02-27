@@ -1,14 +1,14 @@
+
 from dependency_injector import containers, providers
-from dependency_injector.ext import flask
-from flask import Flask
 
-from src.fibonacci.repositories.memcached_repository import MemcachedRepository
+from src.repositories import MemcachedRepository
+from src.services import FibonacciService
 
 
-class ApplicationContainer(containers.DeclarativeContainer):
-    app = flask.Application(Flask, __name__)
+class Container(containers.DeclarativeContainer):
 
     cache_repository = providers.Factory(MemcachedRepository)
+
     fibonacci_service = providers.Factory(
         FibonacciService,
         cache_repository=cache_repository,

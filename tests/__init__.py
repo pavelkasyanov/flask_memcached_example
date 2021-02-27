@@ -1,6 +1,6 @@
 import pytest
 
-from src.app import create_app
+from src.application import create_app
 
 flask_app = create_app(testing=True)
 

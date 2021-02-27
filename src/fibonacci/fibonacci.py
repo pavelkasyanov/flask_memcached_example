@@ -1,11 +1,15 @@
-from flask import jsonify, request
+from dependency_injector.wiring import inject, Provide
+from flask import jsonify, request, Blueprint
 
-from src.fibonacci import fibonacci
-from src.fibonacci.services.fibonacci_service import FibonacciService
+from src.containers import Container
+from src.services import FibonacciService
+
+fibonachi_bp = Blueprint('fibonachi', __name__)
 
 
-@fibonacci.route('', methods=['GET'])
-def get_fibonacci_seq(fibonacci_service: FibonacciService):
+@fibonachi_bp.route('/fibonachi', methods=['GET'])
+@inject
+def get_fibonacci_seq(fibonacci_service: FibonacciService = Provide[Container.fibonacci_service]):
     try:
         seq_start = int(request.args.get('from'))
         seq_end = int(request.args.get('to'))
@@ -19,4 +23,3 @@ def get_fibonacci_seq(fibonacci_service: FibonacciService):
 
     result_seq = fibonacci_service.get_fibonacci_seq(seq_start, seq_end)
     return jsonify(result_seq), 200
-

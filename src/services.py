@@ -1,4 +1,4 @@
-from src.fibonacci.repositories.cache_repository import CacheRepository
+from src.repositories import CacheRepository
 
 
 class FibonacciService:
