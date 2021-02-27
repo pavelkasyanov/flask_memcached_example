@@ -10,4 +10,10 @@ def create_app(testing: bool = False):
 
     app.register_blueprint(fibonacci, url_prefix='/fibonachi')
 
+    
+
     return app
+
+
+def configure(binder):
+    pass

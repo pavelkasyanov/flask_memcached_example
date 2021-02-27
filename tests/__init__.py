@@ -5,7 +5,7 @@ from src.app import create_app
 flask_app = create_app(testing=True)
 
 
-@pytest.yield_fixture(scope='function')
+@pytest.fixture(scope='function')
 def test_client():
     testing_client = flask_app.test_client()
 
