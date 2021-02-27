@@ -1,0 +1,20 @@
+version: "3.3"
+services:
+  api-service:
+    build: .
+    ports:
+      - "80:5000"
+    environment:
+      CACHE_HOST: "$CACHE_HOST"
+      CACHE_PORT: "$CACHE_PORT"
+    depends_on:
+      - my_project_memcached
+  my_project_memcached:
+    image: memcached:latest
+    entrypoint:
+      - memcached
+      - -m 64
+    ports:
+      - "11211:11211"
+    expose:
+      - "11211"
