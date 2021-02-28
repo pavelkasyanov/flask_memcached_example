@@ -8,8 +8,8 @@ class Container(containers.DeclarativeContainer):
     config = providers.Configuration()
 
     cache_repository = providers.Singleton(MemcachedRepository,
-                                           host=config.cache.host,
-                                           port=config.cache.port)
+                                           host=config.host,
+                                           port=config.port)
 
     fibonacci_service = providers.Factory(
         FibonacciService,
