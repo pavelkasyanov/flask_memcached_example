@@ -6,8 +6,8 @@ services:
     ports:
       - "80:5000"
     environment:
-      CACHE_HOST: "$CACHE_HOST"
-      CACHE_PORT: "$CACHE_PORT"
+      CACHE_HOST: cache
+      CACHE_PORT: 11211
     depends_on:
       - cache
   cache:
